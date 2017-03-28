@@ -1,6 +1,5 @@
 FROM ubuntu:latest
 MAINTAINER rcoupe@sorensonmedia.com
-ARG MONGO_VERSION
 
 RUN apt-get update && apt-get -y install \
   build-essential \
@@ -18,11 +17,11 @@ RUN mkdir -p /var/downloads \
     && cd /var/downloads/mongo
 WORKDIR /var/downloads/mongo
 
-RUN git checkout $MONGO_VERSION
+RUN git checkout v3.4
 
 RUN mkdir -p /usr/local/bin
 RUN cd /var/downloads/mongo \
- && scons mongod --ssl -j2 --disable-warnings-as-errors all \
+ && scons mongod --ssl -j8 --disable-warnings-as-errors all \
  && cp /var/downloads/mongo/build/linux2/64/ssl/mongo/mongod /usr/local/bin \
  && rm -rf /var/downloads
 
