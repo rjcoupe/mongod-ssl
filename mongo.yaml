@@ -1,0 +1,12 @@
+storage:
+   dbPath: /data/db
+systemLog:
+   destination: file
+   path: /var/log/mongodb/mongo.log
+   logAppend: true
+net:
+   bindIp: 0.0.0.0
+   port: 27017
+   ssl:
+      mode: requireSSL
+      PEMKeyFile: /etc/ssl/mongo.pem
