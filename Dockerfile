@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER rcoupe@sorensonmedia.com
+MAINTAINER rjcoupe@gmail.com
 ARG MONGO_VERSION='v3.4'
 ARG CORES_AVAILABLE=2
 
