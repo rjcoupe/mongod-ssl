@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER rcoupe@sorensonmedia.com
-ARG MONGO_VERSION
+ARG MONGO_VERSION='v3.4'
 ARG CORES_AVAILABLE=2
 
 RUN apt-get update && apt-get -y install \
