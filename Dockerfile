@@ -36,6 +36,8 @@ RUN cd /var/downloads/mongo \
  && cp /var/downloads/mongo/build/linux2/64/ssl/mongo/mongod /usr/local/bin \
  && rm -rf /var/downloads
 
+EXPOSE 27017
+
 ENTRYPOINT ["/usr/local/bin/mongod", "--config", "/config/mongo.yaml"]
 
 # Cleanup
