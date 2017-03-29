@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER rjcoupe@gmail.com
 ARG MONGO_VERSION='v3.4'
-ARG CORES_AVAILABLE=2
+ARG CORES_AVAILABLE=8
 
 RUN apt-get update && apt-get -y install \
   build-essential \
