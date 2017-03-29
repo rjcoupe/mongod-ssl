@@ -40,7 +40,6 @@ EXPOSE 27017
 
 ENTRYPOINT ["/usr/local/bin/mongod", "--config", "/config/mongo.yaml"]
 
-# Cleanup
 RUN apt-get remove -y --purge git-core scons \
     && apt-get autoremove -y --purge \
     && apt-get clean autoclean
