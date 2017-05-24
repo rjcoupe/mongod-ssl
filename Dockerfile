@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER rjcoupe@gmail.com
-ARG MONGO_VERSION='v3.4'
+ARG MONGO_VERSION='v2.6.3'
 ARG CORES_AVAILABLE=8
 
 RUN apt-get update && apt-get -y install \
@@ -33,7 +33,7 @@ RUN git checkout $MONGO_VERSION
 
 RUN mkdir -p /usr/local/bin
 RUN cd /var/downloads/mongo
-RUN scons mongod --ssl -j$CORES_AVAILABLE --disable-warnings-as-errors mongod
+RUN scons mongod --ssl --64 --release --no-glibc-check -j$CORES_AVAILABLE --disable-warnings-as-errors mongod
 RUN cp /var/downloads/mongo/build/opt/mongo/mongod /usr/local/bin
 RUN rm -rf /var/downloads
 
