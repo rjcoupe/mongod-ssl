@@ -11,7 +11,8 @@ RUN apt-get update && apt-get -y install \
   libboost-filesystem-dev \
   libboost-program-options-dev \
   libboost-system-dev \
-  libboost-thread-dev
+  libboost-thread-dev \
+  libc6-dev
 
 RUN mkdir -p /config
 RUN mkdir -p /data/db
@@ -25,16 +26,14 @@ COPY ./mongo.yaml /config/mongo.yaml
 RUN mkdir -p /var/downloads
 WORKDIR /var/downloads
 RUN git clone git://github.com/mongodb/mongo.git
-RUN pwd
-RUN ls -al
 WORKDIR /var/downloads/mongo
 
 RUN git checkout $MONGO_VERSION
 
 RUN mkdir -p /usr/local/bin
 RUN cd /var/downloads/mongo
-RUN scons mongod --ssl --64 --release --no-glibc-check -j$CORES_AVAILABLE --disable-warnings-as-errors mongod
-RUN cp /var/downloads/mongo/build/opt/mongo/mongod /usr/local/bin
+RUN scons mongod --ssl --disable-warnings-as-errors
+RUN cp ./mongod /usr/local/bin
 RUN rm -rf /var/downloads
 
 EXPOSE 27017
